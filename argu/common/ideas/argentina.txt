@@ -1,0 +1,56 @@
+# ============================================================
+# НАЦИОНАЛЬНЫЕ ДУХИ ДЛЯ ВЕТКИ ИНДУСТРИАЛИЗАЦИИ
+# Файл: common/ideas/ARG_industry_ideas.txt
+# ============================================================
+
+ideas = {
+
+	country = {
+
+		# ── Стартовый бонус (фокус ARG_ind_plan) ──
+		ARG_ind_plan_spirit = {
+			picture = generic_factory_spirit
+
+			allowed = { always = no }   # Только через фокус
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.04          # -4% потреб. товаров
+				industrial_capacity_factory = 0.05     # +5% произв. заводов
+			}
+		}
+
+		# ── Мобилизация рабочей силы (фокус ARG_ind_workers) ──
+		ARG_labor_mobilization = {
+			picture = generic_manpower_bonus
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.06          # -6% потреб. товаров
+				production_speed_buildings_factor = 0.05  # +5% скорость строй.
+				manpower_recovery_speed = 0.10         # +10% восстановление
+			}
+		}
+
+		# ── Индустриальная сверхдержава (фокус ARG_ind_superpower) ──
+		ARG_industrial_superpower_spirit = {
+			picture = generic_production_bonus
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.10             # -10% потреб. товаров
+				industrial_capacity_factory = 0.10        # +10% произв. заводов
+				industrial_capacity_dockyard = 0.05       # +5% доков
+				production_speed_buildings_factor = 0.10  # +10% строительство
+				research_speed_factor = 0.05              # +5% исследования
+			}
+		}
+	}
+}
