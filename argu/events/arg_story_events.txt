@@ -1,0 +1,211 @@
+add_namespace = arg_story
+add_namespace = arg_crazy
+
+# ==========================================
+# Ивент 1: Ранение Императора
+# (ТРИГГЕР — только во время войны, НЕ из фокуса)
+# ==========================================
+country_event = {
+	id = arg_story.1
+	title = arg_story.1.t
+	desc = arg_story.1.d
+	picture = GFX_report_event_generic_factory_strike
+
+	trigger = {
+		tag = ARG
+		has_government = fascism
+		is_in_war = yes
+		NOT = { controls_state = 278 }
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = arg_story.1.a
+		create_country_leader = {
+			name = "Егор Доброгей"
+			desc = "ARG_emperor_desc"
+			picture = "Portrait_Argentina_Emperor_Wounded.dds"
+			expire = "1965.1.1"
+			ideology = fascism_ideology
+			traits = { emperor_of_argentina }
+		}
+		add_stability = -0.15
+		add_war_support = 0.10
+	}
+}
+
+# ==========================================
+# Ивент 2: Смерть ARG_femboy_char
+# (ТОЛЬКО из фокуса — спустя 40 дней)
+# Убери trigger-блок — он теперь is_triggered_only
+# ==========================================
+country_event = {
+	id = arg_story.2
+	title = arg_story.2.t
+	desc = arg_story.2.d
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = arg_story.2.a
+		retire_character = ARG_femboy_char
+		add_stability = -0.05
+	}
+}
+
+# ==========================================
+# Ивент 3: Гибель ARG_factory_char (Аннексия Парагвая)
+# (ТОЛЬКО из фокуса — спустя 40 дней)
+# ==========================================
+country_event = {
+	id = arg_story.3
+	title = arg_story.3.t
+	desc = arg_story.3.d
+	picture = GFX_report_event_generic_factory_strike
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = arg_story.3.a
+		retire_character = ARG_factory_char
+		add_political_power = -50
+	}
+}
+
+# ==========================================
+# Ивент 4: Пропажа ARG_zelen_char
+# (ТОЛЬКО из фокуса — спустя 40 дней)
+# Через 30 дней запускает Ивент 5
+# ==========================================
+country_event = {
+	id = arg_story.4
+	title = arg_story.4.t
+	desc = arg_story.4.d
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = arg_story.4.a
+		retire_character = ARG_zelen_char
+		add_stability = -0.05
+	}
+}
+
+# ==========================================
+# Ивент 5: АСТОЛЬФО ЖИВ — Визит в кабинет Императора
+# (Запускается из фокуса ИЛИ через 30 дней после ивента 4)
+# fire_only_once защитит от двойного срабатывания
+# ==========================================
+country_event = {
+	id = arg_story.5
+	title = arg_story.5.t
+	desc = arg_story.5.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	# Нет опций с эффектами — только сюжет.
+	# Спустя 30 дней придёт донесение об Америке.
+	option = {
+		name = arg_story.5.a
+		country_event = { id = arg_story.6 days = 30 }
+	}
+}
+
+# ==========================================
+# Ивент 6: «Император, Америка…»
+# (Спустя 30 дней после ивента 5)
+# ==========================================
+country_event = {
+	id = arg_story.6
+	title = arg_story.6.t
+	desc = arg_story.6.d
+	picture = GFX_report_event_USA
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	# Игрок нажимает «Что?» — и Астольфо уже у власти в Америке
+	option = {
+		name = arg_story.6.a   # «Что?»
+
+		# --- США становятся фашистской Империей Америки ---
+		USA = {
+
+			# Через 3 дня США объявят войну Аргентине
+			country_event = { id = arg_story.7 days = 3 }
+		}
+
+		add_stability = -0.10     # Шок для Аргентины
+		add_war_support = 0.05
+	}
+}
+
+# ==========================================
+# Ивент 7: ВОЙНА — Империя Америка объявляет войну ARG
+# (Срабатывает на стороне США, спустя 3 дня после ивента 6)
+# ==========================================
+country_event = {
+	id = arg_story.7
+	title = arg_story.7.t
+	desc = arg_story.7.d
+	picture = GFX_report_event_generic_prepare_civil_war
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = arg_story.7.a
+		# США объявляют войну Аргентине — аннексия как повод
+		declare_war_on = {
+			target = ARG
+			type = annex_everything
+		}
+	}
+}
+
+country_event = {
+	id = arg_crazy.1
+	title = arg_crazy.1.t
+	desc = arg_crazy.1.d
+	picture = GFX_report_event_generic_diplomacy
+
+	is_triggered_only = yes # Срабатывает ТОЛЬКО от фокуса Аргентины
+
+	# Вариант А: Помочь Аргентине и напасть на США
+	option = {
+		name = arg_crazy.1.a
+		ai_chance = { factor = 50 } # 50% шанс
+		
+		declare_war_on = {
+			target = USA
+			type = annex_everything
+		}
+		ARG = {
+			country_event = { id = arg_crazy.2 } # Уведомление Аргентине об успехе
+		}
+	}
+
+	# Вариант Б: Решить, что Аргентина поехала кукухой, и напасть на неё
+	option = {
+		name = arg_crazy.1.b
+		ai_chance = { factor = 50 } # 50% шанс
+		
+		declare_war_on = {
+			target = ARG
+			type = annex_everything
+		}
+		ARG = {
+			country_event = { id = arg_crazy.3 } # Уведомление Аргентине о нападении
+		}
+	}
+}
+
+# (Для красоты можешь потом написать ивенты arg_crazy.2 и arg_crazy.3, где Императору просто приносят бумажку со словами "Союзник!" или "Нас предали!")

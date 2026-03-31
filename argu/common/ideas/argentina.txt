@@ -1,0 +1,199 @@
+# ============================================================
+# НАЦИОНАЛЬНЫЕ ДУХИ ДЛЯ ВЕТКИ ИНДУСТРИАЛИЗАЦИИ
+# Файл: common/ideas/ARG_industry_ideas.txt
+# ============================================================
+
+ideas = {
+
+	country = {
+
+		# ── Стартовый бонус (фокус ARG_ind_plan) ──
+		ARG_ind_plan_spirit = {
+			picture = generic_factory_spirit
+
+			allowed = { always = no }   # Только через фокус
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.30          # -4% потреб. товаров
+				industrial_capacity_factory = 0.25     # +5% произв. заводов
+			}
+		}
+
+		# ── Мобилизация рабочей силы (фокус ARG_ind_workers) ──
+		ARG_labor_mobilization = {
+			picture = generic_manpower_bonus
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.10          # -6% потреб. товаров
+				production_speed_buildings_factor = 0.20  # +5% скорость строй.
+				manpower_recovery_speed = 0.10         # +10% восстановление
+			}
+		}
+
+		# ── Индустриальная сверхдержава (фокус ARG_ind_superpower) ──
+		ARG_industrial_superpower_spirit = {
+			picture = generic_production_bonus
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_factor = -0.10             # -10% потреб. товаров
+				industrial_capacity_factory = 0.10        # +10% произв. заводов
+				industrial_capacity_dockyard = 0.05       # +5% доков
+				production_speed_buildings_factor = 0.10  # +10% строительство
+				research_speed_factor = 0.05              # +5% исследования
+			}
+		}
+		# ============================================================
+		# ДУХ 0: БАЗОВАЯ ВОЕННАЯ ДОКТРИНА
+		# Выдаётся корневым фокусом ARG_mil_doctrine
+		# Слабый, постоянный, задаёт тон
+		# ============================================================
+		ARG_military_doctrine_spirit = {
+			picture = generic_army_spirit
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				experience_gain_army = 0.05        # +5% опыт армии
+				training_time_army_factor = -0.05  # -5% время обучения
+			}
+		}
+
+
+		# ============================================================
+		# ДУХ АТАКИ — ПОСТОЯННЫЙ (+10%)
+		# Выдаётся фокусом ARG_mil_infantry_1 (x=29, y=4)
+		# Всегда активен, без дополнительных требований
+		# ============================================================
+		ARG_attack_perm = {
+			picture = generic_attack_spirit
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1          # Нельзя снять вручную
+
+			modifier = {
+				army_attack_factor = 0.10         # +10% атака всех дивизий
+				breakthrough_factor = 0.10        # +10% прорыв всех дивизий
+			}
+		}
+
+
+		# ============================================================
+		# ДУХ АТАКИ — ОПЦИОНАЛЬНЫЙ (+15%)
+		# Выдаётся фокусом ARG_mil_attack_boost (x=29, y=6)
+		# НЕОБЯЗАТЕЛЕН. Цена: +10% потреб. товаров.
+		#
+		# ИТОГО если взяты оба духа атаки:
+		#   +10% (постоянный) + +15% (опциональный) = +25% атака
+		# ============================================================
+		ARG_attack_opt = {
+			picture = generic_morale_boosted
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				army_attack_factor = 0.15         # +15% атака
+				breakthrough_factor = 0.15        # +15% прорыв
+				consumer_goods_factor = 0.10      # ЦЕНА: +10% потреб. товаров
+			}
+		}
+
+
+		# ============================================================
+		# ДУХ ЗАЩИТЫ — ПОСТОЯННЫЙ (+10%)
+		# Выдаётся фокусом ARG_mil_cavalry_1 (x=33, y=4)
+		# Всегда активен, без дополнительных требований
+		# ============================================================
+		ARG_defense_perm = {
+			picture = generic_fortify_spirit
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				army_defense_factor = 0.10         # +10% защита всех дивизий
+				army_core_defence_factor = 0.05    # +5% защита на своей территории
+			}
+		}
+
+
+		# ============================================================
+		# ДУХ ЗАЩИТЫ — ОПЦИОНАЛЬНЫЙ (+15%)
+		# Выдаётся фокусом ARG_mil_defense_boost (x=33, y=6)
+		# НЕОБЯЗАТЕЛЕН. Цена: +10% потреб. товаров.
+		#
+		# ИТОГО если взяты оба духа защиты:
+		#   +10% (постоянный) + +15% (опциональный) = +25% защита
+		# ============================================================
+		ARG_defense_opt = {
+			picture = generic_defense_spirit
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				army_defense_factor = 0.15         # +15% защита
+				consumer_goods_factor = 0.10       # ЦЕНА: +10% потреб. товаров
+			}
+		}
+
+
+		# ============================================================
+		# ДУХ КАВАЛЕРИИ — ПОСТОЯННЫЙ
+		# Выдаётся финальным фокусом ARG_mil_cavalry_master (x=39, y=4)
+		# Действует ТОЛЬКО на кавалерию, постоянно
+		# ============================================================
+		ARG_cavalry_charge_spirit = {
+			picture = generic_cavalry_spirit
+
+			allowed = { always = no }
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			modifier = {
+				cavalry_attack_factor = 0.20           # +20% атака кавалерии
+				cavalry_breakthrough_factor = 0.15     # +15% прорыв кавалерии
+				recon_factor = 0.10                    # +10% разведка
+				max_planning = 0.05                    # +5% макс. планирование
+			}
+		}
+		ARG_maid_guards_idea = {
+			picture = generic_infantry_bonus
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				special_forces_cap = 0.50 # +50% к лимиту спецназа
+				army_org_recover_rate = 0.25 # Солдаты восстанавливаются как бешеные
+				breakthrough_factor = 0.15 # +15% к прорыву
+			}
+		}
+
+		ARG_ragnarok_idea = {
+			picture = generic_attack_bonus
+			allowed = { always = no }
+			removal_cost = -1
+			modifier = {
+				army_attack_factor = 0.20
+				army_core_defense_factor = 0.30 # Дерутся на своей земле до последней капли крови
+				non_core_manpower = 0.10 # Выжимаем рекрутов из захваченных территорий
+			}
+		}
+	}
+}
+

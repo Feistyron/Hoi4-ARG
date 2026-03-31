@@ -1,0 +1,41 @@
+# ==========================================
+# Ивент рулетки для мажоров (Решают: помочь или убить Аргентину)
+# ==========================================
+country_event = {
+	id = arg_crazy.1
+	title = arg_crazy.1.t
+	desc = arg_crazy.1.d
+	picture = GFX_report_event_generic_diplomacy
+
+	is_triggered_only = yes # Срабатывает ТОЛЬКО от фокуса Аргентины
+
+	# Вариант А: Помочь Аргентине и напасть на США
+	option = {
+		name = arg_crazy.1.a
+		ai_chance = { factor = 50 } # 50% шанс
+		
+		declare_war_on = {
+			target = USA
+			type = annex_everything
+		}
+		ARG = {
+			country_event = { id = arg_crazy.2 } # Уведомление Аргентине об успехе
+		}
+	}
+
+	# Вариант Б: Решить, что Аргентина поехала кукухой, и напасть на неё
+	option = {
+		name = arg_crazy.1.b
+		ai_chance = { factor = 50 } # 50% шанс
+		
+		declare_war_on = {
+			target = ARG
+			type = annex_everything
+		}
+		ARG = {
+			country_event = { id = arg_crazy.3 } # Уведомление Аргентине о нападении
+		}
+	}
+}
+
+# (Для красоты можешь потом написать ивенты arg_crazy.2 и arg_crazy.3, где Императору просто приносят бумажку со словами "Союзник!" или "Нас предали!")

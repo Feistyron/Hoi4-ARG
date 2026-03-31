@@ -1,0 +1,125 @@
+characters = {
+    ARG_factory_char = {
+        name = "Ендминистратор" # Имя твоего советника
+        portraits = {
+            civilian = {
+                large = "GFX_portrait_arg_factory" # Ссылка на картинку из Шага 2
+				small = "GFX_portrait_arg_factory_small"
+            }
+        }
+        advisor = {
+            slot = political_advisor # Тип советника (может быть army_chief, high_command и т.д.)
+            idea_token = ARG_factory_role # Уникальный ID его должности
+            
+            # === ТВОИ БОНУСЫ ПИСАТЬ СЮДА ===
+            modifier = {
+                production_factory_max_efficiency_factor = 1.0
+                industrial_capacity_factory = 1.0
+                political_power_gain = 1.0
+				monthly_population = 10.0
+				research_speed_factor = 1.00
+				civilian_factory_use = -2
+				consumer_goods_factor = 0.10
+            }
+        }
+    }
+}
+characters = {
+    ARG_femboy_char = {
+        name = "Астольфо Ван Астрея" # Имя твоего советника
+        portraits = {
+            civilian = {
+                large = "GFX_portrait_arg_femboy" # Ссылка на картинку из Шага 2
+				small = "GFX_portrait_arg_femboy_small"
+            }
+        }
+        advisor = {
+            slot = army_chief # Тип советника (может быть army_chief, high_command и т.д.)
+            idea_token = ARG_femboy_role # Уникальный ID его должности
+            
+            # === ТВОИ БОНУСЫ ПИСАТЬ СЮДА ===
+            modifier = {
+				command_power_gain = 10,00
+				mobilization_speed = 1,00
+				weekly_manpower = 10000
+				# --- Основные бонусы на атаку ---
+				army_attack_factor = 0.10        # +10% к атаке всей армии
+				army_breakthrough_factor = 0.5  # +15% к прорыву
+				soft_attack_factor = 0.20
+			
+				# --- Бонусы для конкретных типов войск ---
+				artillery_soft_attack_factor = 0.10 # +10% мягкой атаки артиллерии
+			
+				# --- Дополнительно ---
+				experience_gain_army_factor = 0.10  
+				land_reinforce_rate = 0.10     
+				cavalry_attack_factor = 0.40         # +15% к общей атаке (Soft + Hard)
+				cavalry_soft_attack_factor = 0.30     # +10% к мягкой атаке (опционально)
+			
+				# --- Прорыв только для кавалерии ---
+				cavalry_breakthrough_factor = 0.15    # +15% к прорыву
+			
+				# --- Другие полезные статы для коней ---
+				cavalry_defence_factor = 0.10         # +10% к защите
+				cavalry_speed_factor = 0.10           # +5% к скорости передвижения
+            }
+        }
+    }
+}
+characters = {
+    ARG_umni_char = {
+        name = "Умный Аноним" # Имя твоего советника
+        portraits = {
+            civilian = {
+                large = "GFX_portrait_arg_umni" # Ссылка на картинку из Шага 2
+				small = "GFX_portrait_arg_umni_small"
+            }
+        }
+        advisor = {
+            slot = political_advisor # Тип советника (может быть army_chief, high_command и т.д.)
+            idea_token = ARG_umni_role # Уникальный ID его должности
+            
+            # === ТВОИ БОНУСЫ ПИСАТЬ СЮДА ===
+            modifier = {
+				# --- Политическая мощь ---
+				political_power_factor = 0.30      # +15% к приросту политической власти
+			
+				# --- Стабильность (фиксированный бонус) ---
+				stability_factor = 0.20            # +10% к стабильности
+			
+				# --- Поддержка войны ---
+				war_support_factor = 0.20          # +10% к поддержке войны
+			
+				# --- Дополнительные фишки (по желанию) ---
+				# drift_base_ideology_factor = 0.10  # Усиление популярности правящей партии
+				# political_power_cost = -0.10       # Снижение стоимости назначения других советников
+            }
+        }
+    }
+}
+characters = {
+    ARG_zelen_char = {
+        name = "Володимир Зеленый" # Имя твоего советника
+        portraits = {
+            civilian = {
+                large = "GFX_portrait_arg_zelen" # Ссылка на картинку из Шага 2
+				small = "GFX_portrait_arg_zelen_small"
+            }
+        }
+        advisor = {
+            slot = political_advisor # Тип советника (может быть army_chief, high_command и т.д.)
+            idea_token = ARG_zelen_role # Уникальный ID его должности
+            
+            # === ТВОИ БОНУСЫ ПИСАТЬ СЮДА ===
+            modifier = {
+				army_defence_factor = 1.00
+				army_core_defence_factor = 1.00
+				army_speed_factor = 0.25
+				army_org = 0.4
+				army_org_factor = 0.4
+				army_org_regain = 0.25
+				out_of_supply_factor = -0.4
+            }
+        }
+    }
+}
